@@ -3,17 +3,6 @@
 
 # Welcome to getpublickey - Your Gateway to Cybersecurity Excellence
 
-## Table of Contents
-  - Introduction
-  - What is getpublickey?
-  - Features
-  - Getting Started
-  - Deployment
-  - Testing
-  - Contributing
-  - License
-
-
 ## Introduction
 
 Welcome to **getpublickey** - the ultimate solution for obtaining the public key of TLS-enabled HTTP servers with unparalleled simplicity and security. In an age where data breaches and cyberattacks are ever-present threats, **getpublickey** empowers you to secure your digital assets by knowing your server's public key.
