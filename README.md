@@ -144,14 +144,8 @@ This command:
 
 After executing the command, your service should be accessible at `https://localhost:8443`.
 
-## Deployment
-Deploying **getpublickey** is a breeze thanks to our meticulously crafted Dockerfile and Kubernetes deployment configuration. You can effortlessly integrate it into your existing infrastructure. Learn more in the Deployment Guide.
-
-## Testing
-We take security seriously. **getpublickey** has undergone extensive testing to ensure its reliability and robustness. Find out how to test it on your KIND Kubernetes cluster and renowned HTTPS servers in the Testing Guide.
-
 ## Contributing
-We welcome contributions from the cybersecurity community! Whether you're interested in adding features, fixing bugs, or improving documentation, your contributions are valuable. See our Contribution Guidelines for details.
+We welcome contributions from the cybersecurity community! Whether you're interested in adding features, fixing bugs, or improving documentation, your contributions are valuable.
 
 ## License
 **getpublickey** is licensed under the Apache License, making it open and accessible for all. Feel free to use, modify, and share this powerful cybersecurity tool.
