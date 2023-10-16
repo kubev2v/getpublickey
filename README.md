@@ -3,6 +3,18 @@
 
 # Welcome to getpublickey - Your Gateway to Cybersecurity Excellence
 
+## Table of content:
+
+  - [Introduction](#introduction)
+  - [Getting Started](#getting-started)
+    - [Clone the Repository](#clone-the-repository)
+    - [Configure Your Environment](#configure-your-environment)
+    - [Run the Server](#run-the-server)
+    - [Access the API](#access-the-api)
+    - [Run Using Container](#run-using-container)
+    - [Running on a Kubernetes Cluster](#running-on-a-kubernetes-cluster)
+  - [Contributing](#contributing)
+
 ## Introduction
 
 Welcome to **getpublickey** - the ultimate solution for obtaining the public key of TLS-enabled HTTP servers with unparalleled simplicity and security. In an age where data breaches and cyberattacks are ever-present threats, **getpublickey** empowers you to secure your digital assets by knowing your server's public key.
