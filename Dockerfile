@@ -1,9 +1,9 @@
 # Use the official Python image as the base image
-FROM python:latest
+FROM registry.access.redhat.com/ubi9/python-311
 
 # Set environment variables
 ENV LISTEN_ADDRESS=0.0.0.0
-ENV LISTEN_PORT=443
+ENV LISTEN_PORT=8443
 ENV TLS_CERT_PATH=/var/run/secrets/getpublickey-serving-cert/tls.crt
 ENV TLS_KEY_PATH=/var/run/secrets/getpublickey-serving-cert/tls.key
 
@@ -14,7 +14,7 @@ WORKDIR /app
 COPY ./src/getpublickey.py /app/
 
 # Expose the specified port
-EXPOSE 443
+EXPOSE 8443
 
 # Command to run the server
 CMD python ./getpublickey.py --listen $LISTEN_ADDRESS --port $LISTEN_PORT --tls-key $TLS_KEY_PATH --tls-crt $TLS_CERT_PATH

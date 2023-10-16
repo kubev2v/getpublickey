@@ -132,17 +132,77 @@ This command builds the container and tags it as `quay.io/kubev2v/getpublickey:l
 Once the image is built, you can run it locally using the following command:
 
 ```bash
-podman run -it -p 8443:443 -v $(pwd)/certs:/var/run/secrets/getpublickey-serving-cert:Z quay.io/kubev2v/getpublickey:latest
+podman run -it -p 8443:8443 -v $(pwd)/certs:/var/run/secrets/getpublickey-serving-cert:Z quay.io/kubev2v/getpublickey:latest
 ```
 
 This command:
 
-  - Maps port 8443 on the host to port 443 in the container.
+  - Maps port 8443 on the host to port 8443 in the container.
   - Mounts the `certs` directory (with the self-signed certificates) to `/var/run/secrets/getpublickey-serving-cert` in the container.
   - Uses the `:Z` option to ensure the mounted directory has the correct SELinux label.
   - Runs the container image `quay.io/kubev2v/getpublickey:latest`.
 
 After executing the command, your service should be accessible at `https://localhost:8443`.
+
+### Running on a Kubernetes Cluster
+
+To deploy and run the `getpublickey` server on a Kubernetes cluster, follow the steps below:
+
+#### Prerequisites
+
+Ensure you have `kubectl` installed and properly configured to communicate with your cluster.
+You need permissions to create new `namespaces` and `deployments` on the cluster.
+
+#### Deployment
+
+  - Log in to the cluster:
+Ensure you're logged into your Kubernetes cluster with the necessary permissions.
+
+  - Deploy the Application:
+Apply the provided deployment configuration:
+
+```bash
+kubectl apply -f ci/deployment.yaml
+```
+
+This command will perform the following actions:
+
+  - Create the `konveyor-forklift` namespace.
+  - Create a secret containing example PEM certification files.
+  - Deploy the `getpublickey` server.
+  - Create a service to expose the `getpublickey` server inside the cluster.
+
+#### Verify Deployment:
+
+After running the command, ensure that the deployment is successful and the pods are running:
+
+```bash
+kubectl get pods -n konveyor-forklift
+```
+
+#### Accessing the Service
+
+The `getpublickey` service is exposed within the cluster under the `konveyor-forklift` namespace on port 8443.
+
+To access the service from your local machine, you can use `kubectl` port-forward:
+
+##### Port Forwarding:
+
+Run the following command to forward port 8443 from the service to port 8443 on your local machine:
+
+```bash
+kubectl port-forward svc/getpublickey 8443:8443 -n konveyor-forklift
+```
+
+##### Access the Service:
+
+With the port forwarding in place, you can access the service on your local machine by navigating to:
+
+```arduino
+https://localhost:8443/url=www.google.com
+```
+
+  Note: Since we're using self-signed certificates, your browser might display a warning about the site's security. You can proceed to view the site.
 
 ## Contributing
 We welcome contributions from the cybersecurity community! Whether you're interested in adding features, fixing bugs, or improving documentation, your contributions are valuable.
