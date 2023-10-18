@@ -212,9 +212,3 @@ https://localhost:8443/url=www.google.com
 ```
 
   Note: Since we're using self-signed certificates, your browser might display a warning about the site's security. You can proceed to view the site.
-
-## Contributing
-We welcome contributions from the cybersecurity community! Whether you're interested in adding features, fixing bugs, or improving documentation, your contributions are valuable.
-
-## License
-**getpublickey** is licensed under the Apache License, making it open and accessible for all. Feel free to use, modify, and share this powerful cybersecurity tool.
