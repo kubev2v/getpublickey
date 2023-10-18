@@ -17,7 +17,7 @@
 
 ## Introduction
 
-`getpublickey` is a utility that provides an API for applications to obtain the public key of a service. This is particularly valuable in secure environments where services utilize self-signed keys. Instead of disabling certificate verification within the secure network, this utility enables them to utilize TLS by retrieving the self-signed public key, allowing users to verify the acquired public key before using it for further communication.
+**getpublickey** is a utility that provides an API for applications to obtain the public key of a service. This is particularly valuable in secure environments where services utilize self-signed keys. Instead of disabling certificate verification within the secure network, this utility enables them to utilize TLS by retrieving the self-signed public key, allowing users to verify the acquired public key before using it for further communication.
 
 > [!NOTE]  
 >  This utility is intended for applications that can't fetch the publick key directly, for example applications that run on a network that does not have access to the service. If your applicaion have access to the service you can get a public key without the need of a service running on a different network.
