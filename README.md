@@ -17,13 +17,15 @@
 
 ## Introduction
 
-`getpublickey` is a utility that offers an API for applications to retrieve the public key of a service. This is particularly valuable in situations where services operate within a secure environment and employ self-signed keys. Instead of disabling certificate verification, this utility allows them to utilize TLS by fetching the public key and allowing users to verify the public key they acquire.
+`getpublickey` is a utility that provides an API for applications to obtain the public key of a service. This is particularly valuable in secure environments where services utilize self-signed keys. Instead of disabling certificate verification within the secure network, this utility enables them to utilize TLS by retrieving the self-signed public key, allowing users to verify the acquired public key before using it for further communication.
 
-*Note:* This utility is intended for cases the application can't fetch the publick key, for example web applications that can not interact directly with the service, or applications that run on a network that does not have access to the service, if your applicaion have access to the service you can get a public key of a service by using other tools like `openssl` without the need to run a service on a remote enviorment.
+> [!NOTE]  
+>  This utility is intended for applications that can't fetch the publick key directly, for example applications that run on a network that does not have access to the service. If your applicaion have access to the service you can get a public key without the need of a service running on a different network.
+>
+> For example if the service is running on the same network you can use command line tools like `openssl` to get the public key directly:
+>
+> `echo | openssl s_client -connect google.com:443 2>/dev/null | openssl x509 -text`
 
-```bash
-echo | openssl s_client -connect google.com:443 2>/dev/null | openssl x509 -text
-```
 
 ## Getting Started
 
