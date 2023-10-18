@@ -1,9 +1,7 @@
 
 [![Operator Repository on Quay](https://quay.io/repository/kubev2v/getpublickey/status "Plugin Repository on Quay")](https://quay.io/repository/kubev2v/getpublickey)
 
-# Welcome to getpublickey - Your Gateway to Cybersecurity Excellence
-
-[**HUMOR_WARNING - Read first**](HUMOR_WARNING.md)
+# getpublickey
 
 ## Table of content:
 
@@ -19,11 +17,7 @@
 
 ## Introduction
 
-Welcome to **getpublickey** - the ultimate solution for obtaining the public key of TLS-enabled HTTP servers with unparalleled simplicity and security. In an age where data breaches and cyberattacks are ever-present threats, **getpublickey** empowers you to secure your digital assets by knowing your server's public key.
-
-## What is getpublickey?
-
-**getpublickey** is a Python web service with a RESTful API that allows you to retrieve the public key used by a TLS-enabled HTTP server. It is designed with a security-first approach, using only Python's built-in libraries to minimize attack surfaces, making it resilient against potential vulnerabilities.
+"GetPublicKey" is a utility that offers an API for applications to retrieve the public key of a service. This is particularly valuable in situations where services operate within a secure environment and employ self-signed keys. Instead of disabling certificate verification, this utility allows them to utilize TLS by fetching and verifying the public key they acquire.
 
 ## Features
 
