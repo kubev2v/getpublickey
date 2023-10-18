@@ -3,6 +3,8 @@
 
 # Welcome to getpublickey - Your Gateway to Cybersecurity Excellence
 
+[**HUMOR_WARNING - Read first**](HUMOR_WARNING.md)
+
 ## Table of content:
 
   - [Introduction](#introduction)
