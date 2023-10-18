@@ -1,4 +1,9 @@
 
+
+<p align="center">
+  <img src="./getpublickey.svg" alt="getpublickey Logo">
+</p>
+
 [![Operator Repository on Quay](https://quay.io/repository/kubev2v/getpublickey/status "Plugin Repository on Quay")](https://quay.io/repository/kubev2v/getpublickey)
 
 # getpublickey
