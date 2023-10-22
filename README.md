@@ -142,15 +142,18 @@ This command builds the container and tags it as `quay.io/kubev2v/getpublickey:l
 Once the image is built, you can run it locally using the following command:
 
 ```bash
-podman run -it -p 8443:8443 -v $(pwd)/certs:/var/run/secrets/getpublickey-serving-cert:Z quay.io/kubev2v/getpublickey:latest
+podman run -it -p 8443:8443 \
+  -v $(pwd)/certs:/var/run/secrets/getpublickey-serving-cert:Z \
+  quay.io/kubev2v/getpublickey:latest
 ```
 
-This command:
-
-  - Maps port 8443 on the host to port 8443 in the container.
-  - Mounts the `certs` directory (with the self-signed certificates) to `/var/run/secrets/getpublickey-serving-cert` in the container.
-  - Uses the `:Z` option to ensure the mounted directory has the correct SELinux label.
-  - Runs the container image `quay.io/kubev2v/getpublickey:latest`.
+> [!NOTE] 
+> This command:
+>
+>  - Maps port 8443 on the host to port 8443 in the container.
+>  - Mounts the `certs` directory (with the self-signed certificates) to `/var/run/secrets/getpublickey-serving-cert` in the container.
+>  - Uses the `:Z` option to ensure the mounted directory has the correct SELinux label.
+>  - Runs the container image `quay.io/kubev2v/getpublickey:latest`.
 
 After executing the command, your service should be accessible at `https://localhost:8443`.
 
@@ -175,12 +178,13 @@ Apply the provided deployment configuration:
 kubectl apply -f ci/deployment.yaml
 ```
 
-This command will perform the following actions:
-
-  - Create the `konveyor-forklift` namespace.
-  - Create a secret containing example PEM certification files.
-  - Deploy the `getpublickey` server.
-  - Create a service to expose the `getpublickey` server inside the cluster.
+> [!NOTE] 
+> This command will perform the following actions:
+>
+>  - Create the `konveyor-forklift` namespace.
+>  - Create a secret containing example PEM certification files.
+>  - Deploy the `getpublickey` server.
+>  - Create a service to expose the `getpublickey` server inside the cluster.
 
 #### Verify Deployment:
 
