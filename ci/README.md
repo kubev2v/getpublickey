@@ -18,7 +18,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 Once cert manage is installed, you can apply the issuer
 
 ```bash
-kubectl apply -f ci/issuer.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/issuer.yaml
 ```
 
 This action will establish an issuer named forklift-issuer. To verify its presence in your cluster, run:
@@ -32,7 +32,7 @@ kubectl get issuer -n konveyor-forklift
 Next, apply the certificate configuration to generate a secret named getpublickey-serving-cert:
 
 ```bash
-kubectl apply -f ci/certificate.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/certificate.yaml
 ```
 
 ## Deploying the Server:
@@ -40,7 +40,7 @@ kubectl apply -f ci/certificate.yaml
 Finally, deploy the getpublickey server pod and its associated service, which will utilize the getpublickey-serving-cert secret:
 
 ```bash
-kubectl apply -f ci/deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/deployment.yaml
 ```
 
 > [!NOTE]
