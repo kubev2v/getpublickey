@@ -1,5 +1,8 @@
-# Use the official Python image as the base image
-FROM registry.access.redhat.com/ubi9/python-311
+# Use the official ubi minimal base image
+FROM registry.access.redhat.com/ubi9/ubi-minimal
+
+# Install python
+RUN microdnf install python -y
 
 # Set environment variables
 ENV LISTEN_ADDRESS=0.0.0.0
