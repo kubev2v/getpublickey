@@ -8,7 +8,7 @@
 
 # getpublickey
 
-Monitor and manage public keys for services running on a disconnected private network.
+Monitor public keys for services running on a disconnected private network.
 
 ## Table of content:
 
