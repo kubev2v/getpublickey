@@ -1,0 +1,44 @@
+
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: konveyor-forklift
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: forklift-issuer-selfsigned
+  namespace: konveyor-forklift
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: forkliftcertificate
+  namespace: konveyor-forklift
+spec:
+  commonName: forklift-certificate
+  dnsNames:
+  - svc
+  - svc.cluster.local
+  isCA: true
+  issuerRef:
+    group: cert-manager.io
+    kind: Issuer
+    name: forklift-issuer-selfsigned
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  secretName: forklift-cert
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: forklift-issuer
+  namespace: konveyor-forklift
+spec:
+  ca:
+    secretName: forklift-cert
