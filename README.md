@@ -8,6 +8,8 @@
 
 # getpublickey
 
+Monitor and manage public keys for services running on a disconnected private network.
+
 ## Table of content:
 
   - [Introduction](#introduction)
@@ -75,10 +77,10 @@ Set up a `kind` Kubernetes cluster if you want to run the server in a cluster en
 
 ### Run the Server
 
-#### To run the getpublickey server:
+#### To run the getpublickey locally:
 
 ```bash
-python ./src/getpublickey.py
+python ./src/getpublickey.py --help
 ```
 
 #### Optional Flags:
@@ -95,41 +97,35 @@ python ./src/getpublickey.py --port 8080
 python ./src/getpublickey.py --listen 192.168.1.100
 ```
 
-  --tls-key and --tls-cert: Point to files containing the server PEM certs. (Default are key.pem and cert.pem)
+  --tls-key and --tls-cert: Point to files containing the server PEM certs. (Default are tls.key and tls.crt)
 
 ```bash
-python ./src/getpublickey.py --tls-key /path/to/yourkey.pem --tls-cert /path/to/yourcert.pem
+python ./src/getpublickey.py --tls-key certs/tls.key --tls-cert certs/tls.crt
 ```
 
 #### Generate Local Self-Signed Certificates for Testing:
-
-```bash
-openssl req -x509 -newkey rsa:4096 -keyout tls.key -out tls.crt -days 365 -nodes
-```
-
-### Access the API
-
-With the server up and running, you can access the API to retrieve public keys. Use the `curl` CLI utility:
-
-```bash
-curl -k -G https://127.0.0.1:8443/ --data 'url=example.com:443/boards'
-```
-
-  Replace the `url` parameter value with the desired server's URL from which you want to retrieve the public key.
-
-
-### Run Using Container
-
-#### Generating Self-Signed Certificates for Testing
-
-Before running the container, if you need self-signed certificates for testing, you can generate them using the following commands:
 
 ```bash
 mkdir certs
 openssl req -x509 -newkey rsa:4096 -keyout certs/tls.key -out certs/tls.crt -days 365 -nodes
 ```
 
-This will create a certs directory with two files: `tls.key` (the private key) and `tls.crt` (the certificate).
+> [!NOTE]  
+> This will create a certs directory with two files: `tls.key` (the private key) and `tls.crt` (the certificate).
+
+### Access the API
+
+With the server up and running, you can access the API to retrieve public keys. Use the `curl` CLI utility:
+
+```bash
+curl -k -G https://127.0.0.1:8443/ --data 'url=github.com'
+```
+
+> [!NOTE] 
+> Replace the `url` parameter value with the desired server's URL from which you want to retrieve the public key.
+
+
+### Run Using Container
 
 #### Building the Container Image with Podman
 
@@ -167,7 +163,7 @@ To deploy and run the `getpublickey` server on a Kubernetes cluster, follow the 
 Ensure you have `kubectl` installed and properly configured to communicate with your cluster.
 You need permissions to create new `namespaces` and `deployments` on the cluster.
 
-#### Deployment
+#### Deploy the service on a remote Kubernetes cluster
 
   - Log in to the cluster:
 Ensure you're logged into your Kubernetes cluster with the necessary permissions.
@@ -194,7 +190,7 @@ After running the command, ensure that the deployment is successful and the pods
 kubectl get pods -n konveyor-forklift
 ```
 
-#### Accessing the Service
+#### Accessing the Service when running inside a Kubernetes cluster
 
 The `getpublickey` service is exposed within the cluster under the `konveyor-forklift` namespace on port 8443.
 
@@ -207,13 +203,3 @@ Run the following command to forward port 8443 from the service to port 8443 on 
 ```bash
 kubectl port-forward svc/getpublickey 8443:8443 -n konveyor-forklift
 ```
-
-##### Access the Service:
-
-With the port forwarding in place, you can access the service on your local machine by navigating to:
-
-```arduino
-https://localhost:8443/url=www.google.com
-```
-
-  Note: Since we're using self-signed certificates, your browser might display a warning about the site's security. You can proceed to view the site.
