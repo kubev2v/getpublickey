@@ -8,6 +8,8 @@
 
 # getpublickey
 
+Monitor and manage public keys for services running on a disconnected private network.
+
 ## Table of content:
 
   - [Introduction](#introduction)
@@ -124,8 +126,6 @@ curl -k -G https://127.0.0.1:8443/ --data 'url=github.com'
 
 
 ### Run Using Container
-
-#### Generating Self-Signed Certificates for Testing
 
 #### Building the Container Image with Podman
 
