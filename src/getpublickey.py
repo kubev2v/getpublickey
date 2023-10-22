@@ -128,13 +128,13 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--tls-key",
-        default="key.pem",
-        help="Path to the TLS key file for HTTPS (default key.pem)",
+        default="tls.key",
+        help="Path to the TLS key file for HTTPS (default tls.key)",
     )
     parser.add_argument(
         "--tls-crt",
-        default="cert.pem",
-        help="Path to the TLS certificate file for HTTPS (default cert.pem)",
+        default="tls.crt",
+        help="Path to the TLS certificate file for HTTPS (default tls.crt)",
     )
     parser.add_argument("--url", help="URL to use in the CLI (optional)")
 
