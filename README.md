@@ -157,12 +157,12 @@ After executing the command, your service should be accessible at `https://local
 
 ### Setting up the 'getpublickey' Server on a Kubernetes Cluster
 
-Follow these guidelines to deploy the getpublickey server on a Kubernetes cluster:
+Follow these guidelines to deploy the `getpublickey` server on a Kubernetes cluster:
 
 #### Preparation Steps
 
-  - Make sure you've installed kubectl and have set it up correctly to interact with your cluster.
-Ensure you possess the rights to initiate new namespaces and deployments within the cluster.
+  - Make sure you've installed `kubectl` and have set it up correctly to interact with your cluster.
+Ensure you possess the rights to initiate new `namespaces` and `deployments` within the cluster.
 
   - Ensure you have `kubectl` installed and properly configured to communicate with your cluster.
 You need permissions to create new `namespaces` and `deployments` on the cluster.
@@ -170,4 +170,4 @@ You need permissions to create new `namespaces` and `deployments` on the cluster
 #### Launching the Service on an External Kubernetes Cluster
 
   - Cluster Authentication: Confirm that you're connected to your Kubernetes cluster and have the requisite privileges.
-  - Application Deployment: Refer to the ['ci' folder](./ci) for detailed instructions on deploying the getpublickey service to an external cluster.
+  - Application Deployment: Refer to the ['ci' folder](./ci) for detailed instructions on deploying the `getpublickey` service to an external cluster.
