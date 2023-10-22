@@ -19,8 +19,6 @@ Monitor public keys for services running on a disconnected private network.
     - [Run the Server](#run-the-server)
     - [Access the API](#access-the-api)
     - [Run Using Container](#run-using-container)
-    - [Running on a Kubernetes Cluster](#running-on-a-kubernetes-cluster)
-  - [Contributing](#contributing)
 
 ## Introduction
 
@@ -157,19 +155,19 @@ podman run -it -p 8443:8443 \
 
 After executing the command, your service should be accessible at `https://localhost:8443`.
 
-### Running on a Kubernetes Cluster
+### Setting up the 'getpublickey' Server on a Kubernetes Cluster
 
-To deploy and run the `getpublickey` server on a Kubernetes cluster, follow the steps below:
+Follow these guidelines to deploy the getpublickey server on a Kubernetes cluster:
 
-#### Prerequisites
+#### Preparation Steps
 
-Ensure you have `kubectl` installed and properly configured to communicate with your cluster.
+  - Make sure you've installed kubectl and have set it up correctly to interact with your cluster.
+Ensure you possess the rights to initiate new namespaces and deployments within the cluster.
+
+  - Ensure you have `kubectl` installed and properly configured to communicate with your cluster.
 You need permissions to create new `namespaces` and `deployments` on the cluster.
 
-#### Deploy the service on a remote Kubernetes cluster
+#### Launching the Service on an External Kubernetes Cluster
 
-  - Log in to the cluster:
-Ensure you're logged into your Kubernetes cluster with the necessary permissions.
-
-  - Deploy the Application:
-[See the ci directory](./ci) for more information about deploying `getpublickey` service on a remote cluster.
+  - Cluster Authentication: Confirm that you're connected to your Kubernetes cluster and have the requisite privileges.
+  - Application Deployment: Refer to the ['ci' folder](./ci) for detailed instructions on deploying the getpublickey service to an external cluster.
