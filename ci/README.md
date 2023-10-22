@@ -44,7 +44,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/
 ```
 
 > [!NOTE]
-> Testin the service deployment locally:
+> For testing the service deployment:
 >
 > Port forwart the service to the local machine:
 > ```bash
