@@ -172,38 +172,4 @@ You need permissions to create new `namespaces` and `deployments` on the cluster
 Ensure you're logged into your Kubernetes cluster with the necessary permissions.
 
   - Deploy the Application:
-Apply the provided deployment configuration:
-
-```bash
-kubectl apply -f ci/deployment.yaml
-```
-
-> [!NOTE] 
-> This command will perform the following actions:
->
->  - Create the `konveyor-forklift` namespace.
->  - Create a secret containing example PEM certification files.
->  - Deploy the `getpublickey` server.
->  - Create a service to expose the `getpublickey` server inside the cluster.
-
-#### Verify Deployment:
-
-After running the command, ensure that the deployment is successful and the pods are running:
-
-```bash
-kubectl get pods -n konveyor-forklift
-```
-
-#### Accessing the Service when running inside a Kubernetes cluster
-
-The `getpublickey` service is exposed within the cluster under the `konveyor-forklift` namespace on port 8443.
-
-To access the service from your local machine, you can use `kubectl` port-forward:
-
-##### Port Forwarding:
-
-Run the following command to forward port 8443 from the service to port 8443 on your local machine:
-
-```bash
-kubectl port-forward svc/getpublickey 8443:8443 -n konveyor-forklift
-```
+[See the ci directory](./ci) for more information about deploying `getpublickey` service on a remote cluster.
