@@ -8,7 +8,11 @@
 
 # getpublickey
 
-Monitor public keys for services running on a disconnected private network.
+Monitor public certificates (public keys) for services running on a disconnected private network.
+
+## What can I do with getpublickey ?
+
+Within your secure network, run the **getpublickey** service and expose its API endpoint externally. Use this API to retrieve self-signed public certificates from the internal services you wish to consume. After verifying these certificates, configure your internal services to utilize them, ensuring secure communication when interacting with self-signed services inside the secure network.
 
 ## Table of content:
 
@@ -22,12 +26,12 @@ Monitor public keys for services running on a disconnected private network.
 
 ## Introduction
 
-**getpublickey** is a utility that provides an API for applications to obtain the public key of a service. This is particularly valuable in secure environments where services utilize self-signed keys. Instead of disabling certificate verification within the secure network, this utility enables them to utilize TLS by retrieving the self-signed public key, allowing users to verify the acquired public key before using it for further communication.
+**getpublickey** is a utility that provides an API for applications to obtain the server public certificate. This is particularly valuable in secure environments where services utilize self-signed keys. Instead of disabling certificate verification within the secure network, this utility enables them to utilize TLS by retrieving the self-signed public certificate, allowing users to verify the acquired public certificate before using it for further communication.
 
 > [!NOTE]  
->  This utility is intended for applications that can't fetch the publick key directly, for example applications that run on a network that does not have access to the service. If your applicaion have access to the service you can get a public key without the need of a service running on a different network.
+>  This utility is intended for applications that can't fetch the public certificate directly, for example applications that run on a network that does not have access to the service. If your applicaion have access to the service you can get a public certificate without the need of a service running on a different network.
 >
-> For example if the service is running on the same network you can use command line tools like `openssl` to get the public key directly:
+> For example if the service is running on the same network you can use command line tools like `openssl` to get the public certificate directly:
 >
 > `echo | openssl s_client -connect google.com:443 2>/dev/null | openssl x509 -text`
 
@@ -113,14 +117,14 @@ openssl req -x509 -newkey rsa:4096 -keyout certs/tls.key -out certs/tls.crt -day
 
 ### Access the API
 
-With the server up and running, you can access the API to retrieve public keys. Use the `curl` CLI utility:
+With the server up and running, you can access the API to retrieve public certificates. Use the `curl` CLI utility:
 
 ```bash
 curl -k -G https://127.0.0.1:8443/ --data 'url=github.com'
 ```
 
 > [!NOTE] 
-> Replace the `url` parameter value with the desired server's URL from which you want to retrieve the public key.
+> Replace the `url` parameter value with the desired server's URL from which you want to retrieve the public certificate.
 
 
 ### Run Using Container
