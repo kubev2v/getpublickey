@@ -14,6 +14,26 @@ Monitor public certificates (public keys) for services running on a disconnected
 
 Within your secure network, run the **getpublickey** service and expose its API endpoint externally. Use this API to retrieve self-signed public certificates from the internal services you wish to consume. After verifying these certificates, configure your internal services to utilize them, ensuring secure communication when interacting with self-signed services inside the secure network.
 
+## Quick install
+
+On **Openshift** cluster with Openshift MTV operator installed:
+
+```bash
+# deploy - deploy the service on openshift-mtv namespace
+kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/deployment.ocp.yaml
+
+# optional - patch console plugin proxy
+curl https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/consoleplugin.patch.yaml \
+        -o /tmp/consoleplugin.patch.yaml &&\
+     kubectl patch consoleplugin forklift-console-plugin \
+        --type=merge --patch-file /tmp/consoleplugin.patch.yaml
+
+# Service will be available at:
+#   https://[openshift console url]/api/proxy/plugin/forklift-console-plugin/getpublickey/?url=[service url]
+```
+
+Refer to the ['ci' folder](./ci) for detailed instructions on deploying the `getpublickey` service to an external cluster.
+
 ## Table of content:
 
   - [Introduction](#introduction)
