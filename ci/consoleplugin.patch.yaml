@@ -1,0 +1,26 @@
+spec:
+  proxy:
+  - alias: getpublickey
+    authorization: UserToken
+    endpoint:
+      service:
+        name: getpublickey
+        namespace: openshift-mtv
+        port: 8443
+      type: Service
+  - alias: forklift-inventory
+    authorization: UserToken
+    endpoint:
+      service:
+        name: forklift-inventory
+        namespace: openshift-mtv
+        port: 8443
+      type: Service
+  - alias: forklift-must-gather-api
+    authorization: UserToken
+    endpoint:
+      service:
+        name: forklift-must-gather-api
+        namespace: openshift-mtv
+        port: 8444
+      type: Service

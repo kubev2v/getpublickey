@@ -1,12 +1,24 @@
 # Deployment Guide for getpublickey Server in Kubernetes
 
-When interacting with a Kubernetes cluster within the `konveyor-forklift` namespace:
+## Deploying the Server on Openshift cluster:
 
-> [!NOTE]
-> Note for **OpenShift** Users: When using **OpenShift**, the deployment automatically relies on **OpenShift**'s native certification. Therefore, manual deployment of the issuer and certificate, as described for vanilla Kubernetes, might not be necessary, skip the certification sections and go to [Deploying the Server](#deploying-the-server).
+Deploy the getpublickey server pod and its associated service using `openshift-mtv` namespace on **Openshift** cluster:
 
+```bash
+# deploy - deploy the service on openshift-mtv namespace
+kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/deployment.ocp.yaml
 
-## Setting up the Issuer (Cert-Manager) for Vanilla Kubernetes:
+# optional - patch console plugin proxy
+kubectl patch consoleplugin forklift-console-plugin \
+    --patch-file https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/consoleplugin.patch.yaml \
+    --type=merge
+```
+
+## Deploying the Server on Vanilla Kubernetes:
+
+Deploy `getpublickey` service on a Kubernetes cluster within the `konveyor-forklift` namespace:
+
+### Setting up the Certificate Issuer (Cert-Manager):
 
 On a vanilla Kubernetes cluster, we utilize [cert-manager](https://cert-manager.io/docs/installation/kubernetes/) to manage certificates. If you haven't already, you'll first need to [install cert-manager](https://cert-manager.io/docs/installation/kubernetes/). Once installed, you can proceed to deploy the self-signed issuer:
 
@@ -27,7 +39,7 @@ This action will establish an issuer named forklift-issuer. To verify its presen
 kubectl get issuer -n konveyor-forklift
 ```
 
-## Generating Certificates:
+### Generating Certificates:
 
 Next, apply the certificate configuration to generate a secret named getpublickey-serving-cert:
 
@@ -35,11 +47,12 @@ Next, apply the certificate configuration to generate a secret named getpublicke
 kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/certificate.yaml
 ```
 
-## Deploying the Server:
+### Deploying the Server:
 
 Finally, deploy the getpublickey server pod and its associated service, which will utilize the getpublickey-serving-cert secret:
 
 ```bash
+# deploy - deploy the service on konveyor-forklift namespace
 kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/deployment.yaml
 ```
 
