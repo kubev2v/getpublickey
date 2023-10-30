@@ -9,10 +9,18 @@ Deploy the getpublickey server pod and its associated service using `openshift-m
 kubectl apply -f https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/deployment.ocp.yaml
 
 # optional - patch console plugin proxy
-kubectl patch consoleplugin forklift-console-plugin \
-    --patch-file https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/consoleplugin.patch.yaml \
-    --type=merge
+curl https://raw.githubusercontent.com/kubev2v/getpublickey/main/ci/consoleplugin.patch.yaml \
+        -o /tmp/consoleplugin.patch.yaml &&\
+     kubectl patch consoleplugin forklift-console-plugin \
+        --type=merge --patch-file /tmp/consoleplugin.patch.yaml
 ```
+
+> [!NOTE]
+> For testing the console plugin patch and deployment:
+> browse to `https://[openshift console url]/api/proxy/plugin/forklift-console-plugin/getpublickey/?url=[service url]`
+> 
+> For example on Openshift CRC it may be somethong like:
+> https://console-openshift-console.apps-crc.testing/api/proxy/plugin/forklift-console-plugin/getpublickey/?url=google.com
 
 ## Deploying the Server on Vanilla Kubernetes:
 
